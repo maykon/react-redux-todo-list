@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeTodoText } from '../../store/reducers/Form';
-import { addTodo, clearTodos } from '../../store/reducers/Todo';
+import { clearTodos } from '../../store/reducers/Todo';
+import { addTodoThunk } from '../../thunk/Todo';
 
 const Form = () => {
 	const dispatch = useDispatch();
@@ -9,8 +10,7 @@ const Form = () => {
 
 	const onChangeTodo = useCallback(({ target }) => dispatch(changeTodoText(target.value)), [dispatch]);
 	const onAddTodo = useCallback(() => {
-		dispatch(addTodo(todo));
-		dispatch(changeTodoText(''));
+		dispatch(addTodoThunk(todo));
 	}, [dispatch, todo]);
 	const onClearTodos = useCallback(() => dispatch(clearTodos()), [dispatch]);
 

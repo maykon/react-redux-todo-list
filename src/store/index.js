@@ -1,4 +1,5 @@
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 import TodoReducer from './reducers/Todo';
 import FormReducer from './reducers/Form';
 
@@ -12,6 +13,6 @@ const reducers = combineReducers({
 	form: FormReducer
 });
 
-const store = createStore(reducers, composeEnhancers());
+const store = createStore(reducers, composeEnhancers(applyMiddleware(reduxThunk)));
 
 export default store;

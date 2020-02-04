@@ -7,7 +7,10 @@ export default (state = initialState, action) => {
 		case 'ADD_TODO':
 			return {
 				...state,
-				todos: [...state.todos, { id: state.todos.length + 1, text: action.payload }]
+				todos: [
+					...state.todos,
+					{ id: state.todos.length + 1, text: action.payload, rand: Math.floor(Math.random() * 2) }
+				].sort((a, _) => (a.rand ? -1 : 1))
 			};
 		case 'REMOVE_TODO':
 			return {
